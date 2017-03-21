@@ -28,6 +28,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        maven { url "/Users/amar/.gitRepos/layerhq/releases-android/releases/" }
+        jcenter()
+    }
 }
 
 dependencies {

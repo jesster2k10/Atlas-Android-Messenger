@@ -126,8 +126,9 @@ public class CustomEndpoint {
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             if (Log.isLoggable(Log.ERROR)) Log.e(e.getMessage(), e);
+            throw new IllegalStateException("Failed to read endpoint data");
         } finally {
             if (is != null) {
                 try {
