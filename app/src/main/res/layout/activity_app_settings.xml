@@ -305,12 +305,22 @@
                 android:text="@string/settings_title_conversations"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <TextView
-                android:id="@+id/conversation_count"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[conversation count]"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/conversation_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[conversation count]"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                <ProgressBar
+                android:id="@+id/conversation_count_progress"
+                android:layout_width="@dimen/settings_progress_bar"
+                android:layout_centerInParent="true"
+                android:layout_height="@dimen/settings_progress_bar" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -328,12 +338,23 @@
                 android:text="@string/settings_title_messages"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <TextView
-                android:id="@+id/message_count"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[message count]"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/message_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[message count]"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+                <ProgressBar
+                    android:id="@+id/message_count_progress"
+                    android:layout_width="@dimen/settings_progress_bar"
+                    android:layout_centerInParent="true"
+                    android:layout_height="@dimen/settings_progress_bar" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -351,12 +372,23 @@
                 android:text="@string/settings_title_unread_messages"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-            <TextView
-                android:id="@+id/unread_message_count"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[unread message count]"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/unread_message_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[unread message count]"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+                <ProgressBar
+                    android:id="@+id/unread_message_count_progress"
+                    android:layout_width="@dimen/settings_progress_bar"
+                    android:layout_centerInParent="true"
+                    android:layout_height="@dimen/settings_progress_bar" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

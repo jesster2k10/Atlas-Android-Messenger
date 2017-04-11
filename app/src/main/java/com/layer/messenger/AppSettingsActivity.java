@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,14 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
     private TextView mDiskAllowance;
     private TextView mAutoDownloadMimeTypes;
 
+    /* Progress Bar */
+    private ProgressBar unreadMessageCountProgress;
+    private ProgressBar messageCountProgress;
+    private ProgressBar conversationCountProgress;
+
+    private long totalMessages = 0;
+    private long totalUnread = 0;
+
     public AppSettingsActivity() {
         super(R.layout.activity_app_settings, R.menu.menu_settings, R.string.title_settings, true);
     }
@@ -81,6 +90,10 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
         mDiskUtilization = (TextView) findViewById(R.id.disk_utilization);
         mDiskAllowance = (TextView) findViewById(R.id.disk_allowance);
         mAutoDownloadMimeTypes = (TextView) findViewById(R.id.auto_download_mime_types);
+        unreadMessageCountProgress = (ProgressBar) findViewById(R.id.unread_message_count_progress);
+        messageCountProgress = (ProgressBar) findViewById(R.id.message_count_progress);
+        conversationCountProgress = (ProgressBar) findViewById(R.id.conversation_count_progress);
+
         mAvatar.init(getPicasso());
 
         // Long-click copy-to-clipboard
@@ -238,17 +251,7 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
             mUserId.setText(R.string.settings_not_authenticated);
         }
 
-        /* Statistics */
-        long totalMessages = 0;
-        long totalUnread = 0;
-        List<Conversation> conversations = getLayerClient().getConversations();
-        for (Conversation conversation : conversations) {
-            totalMessages += conversation.getTotalMessageCount();
-            totalUnread += conversation.getTotalUnreadMessageCount();
-        }
-        mConversationCount.setText(String.format("%d", conversations.size()));
-        mMessageCount.setText(String.format("%d", totalMessages));
-        mUnreadMessageCount.setText(String.format("%d", totalUnread));
+        setUpConversationCount();
 
         /* Rich Content */
         mDiskUtilization.setText(readableByteFormat(getLayerClient().getDiskUtilization()));
@@ -259,6 +262,31 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
             mDiskAllowance.setText(readableByteFormat(allowance));
         }
         mAutoDownloadMimeTypes.setText(TextUtils.join("\n", getLayerClient().getAutoDownloadMimeTypes()));
+    }
+
+    private void setUpConversationCount() {
+        new Thread(new Runnable() {
+            public void run() {
+                /* Statistics */
+                final List<Conversation> conversations = getLayerClient().getConversations();
+                for (Conversation conversation : conversations) {
+                    totalMessages += conversation.getTotalMessageCount();
+                    totalUnread += conversation.getTotalUnreadMessageCount();
+                }
+
+                mConversationCount.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mConversationCount.setText(String.format("%d", conversations.size()));
+                        mMessageCount.setText(String.format("%d", totalMessages));
+                        mUnreadMessageCount.setText(String.format("%d", totalUnread));
+                        conversationCountProgress.setVisibility(View.INVISIBLE);
+                        messageCountProgress.setVisibility(View.INVISIBLE);
+                        unreadMessageCountProgress.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+        }).start();
     }
 
     private String readableByteFormat(long bytes) {
