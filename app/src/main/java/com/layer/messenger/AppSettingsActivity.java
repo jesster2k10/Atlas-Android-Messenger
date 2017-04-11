@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,12 +58,6 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
     private TextView mDiskAllowance;
     private TextView mAutoDownloadMimeTypes;
 
-    /* Progress Bar */
-    private ProgressBar mUnreadMessageCountProgress;
-    private ProgressBar mMessageCountProgress;
-    private ProgressBar mConversationCountProgress;
-
-
     public AppSettingsActivity() {
         super(R.layout.activity_app_settings, R.menu.menu_settings, R.string.title_settings, true);
     }
@@ -91,9 +84,7 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
         mDiskUtilization = (TextView) findViewById(R.id.disk_utilization);
         mDiskAllowance = (TextView) findViewById(R.id.disk_allowance);
         mAutoDownloadMimeTypes = (TextView) findViewById(R.id.auto_download_mime_types);
-        mUnreadMessageCountProgress = (ProgressBar) findViewById(R.id.unread_message_count_progress);
-        mMessageCountProgress = (ProgressBar) findViewById(R.id.message_count_progress);
-        mConversationCountProgress = (ProgressBar) findViewById(R.id.conversation_count_progress);
+
 
         mAvatar.init(getPicasso());
 
@@ -283,9 +274,6 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
         mConversationCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_CONVERSATION_COUNT)));
         mMessageCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_MESSAGE_KEY)));
         mUnreadMessageCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_UNREAD_MESSAGE_KEY)));
-        mConversationCountProgress.setVisibility(View.INVISIBLE);
-        mMessageCountProgress.setVisibility(View.INVISIBLE);
-        mUnreadMessageCountProgress.setVisibility(View.INVISIBLE);
     }
 
     private String readableByteFormat(long bytes) {
