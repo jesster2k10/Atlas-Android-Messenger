@@ -17,8 +17,9 @@ import android.widget.Toast;
 
 import com.layer.atlas.AtlasAvatar;
 import com.layer.atlas.util.Util;
-import com.layer.messenger.util.Constants;
-import com.layer.messenger.util.ConversationTaskLoader;
+import com.layer.messenger.util.ConversationSettingsTaskLoader;
+import com.layer.messenger.util.ConversationSettingsTaskLoader.Results;
+
 import com.layer.messenger.util.Log;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.changes.LayerChangeEvent;
@@ -28,9 +29,7 @@ import com.layer.sdk.listeners.LayerChangeEventListener;
 import com.layer.sdk.listeners.LayerConnectionListener;
 import com.layer.sdk.messaging.Identity;
 
-import java.util.HashMap;
-
-public class AppSettingsActivity extends BaseActivity implements LayerConnectionListener, LayerAuthenticationListener, LayerChangeEventListener, View.OnLongClickListener, LoaderManager.LoaderCallbacks<HashMap<String, Integer>> {
+public class AppSettingsActivity extends BaseActivity implements LayerConnectionListener, LayerAuthenticationListener, LayerChangeEventListener, View.OnLongClickListener, LoaderManager.LoaderCallbacks<Results> {
     /* Account */
     private AtlasAvatar mAvatar;
     private TextView mUserName;
@@ -184,17 +183,17 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
     }
 
     @Override
-    public Loader<HashMap<String, Integer>> onCreateLoader(int id, Bundle args) {
-        return new ConversationTaskLoader(getApplicationContext());
+    public Loader<Results> onCreateLoader(int id, Bundle args) {
+        return new ConversationSettingsTaskLoader(getApplicationContext());
     }
 
     @Override
-    public void onLoadFinished(Loader<HashMap<String, Integer>> loader, HashMap<String, Integer> data) {
+    public void onLoadFinished(Loader<Results> loader, Results data) {
         setUpConversationCount(data);
     }
 
     @Override
-    public void onLoaderReset(Loader<HashMap<String, Integer>> loader) {}
+    public void onLoaderReset(Loader<Results> loader) {}
 
     @Override
     protected void onResume() {
@@ -269,11 +268,11 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
         mAutoDownloadMimeTypes.setText(TextUtils.join("\n", getLayerClient().getAutoDownloadMimeTypes()));
     }
 
-    private void setUpConversationCount(HashMap<String, Integer> result) {
+    private void setUpConversationCount(Results results) {
 
-        mConversationCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_CONVERSATION_COUNT)));
-        mMessageCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_MESSAGE_KEY)));
-        mUnreadMessageCount.setText(String.format("%d", result.get(Constants.SETTINGS_TOTAL_UNREAD_MESSAGE_KEY)));
+        mConversationCount.setText(String.format("%d", results.getConversationSize()));
+        mMessageCount.setText(String.format("%d", results.getTotalMessages()));
+        mUnreadMessageCount.setText(String.format("%d", results.getTotalUnread()));
     }
 
     private String readableByteFormat(long bytes) {
