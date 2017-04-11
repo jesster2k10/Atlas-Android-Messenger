@@ -57,12 +57,12 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
     private TextView mAutoDownloadMimeTypes;
 
     /* Progress Bar */
-    private ProgressBar unreadMessageCountProgress;
-    private ProgressBar messageCountProgress;
-    private ProgressBar conversationCountProgress;
+    private ProgressBar mUnreadMessageCountProgress;
+    private ProgressBar mMessageCountProgress;
+    private ProgressBar mConversationCountProgress;
 
-    private long totalMessages = 0;
-    private long totalUnread = 0;
+    private long mTotalMessages = 0;
+    private long mTotalUnread = 0;
 
     public AppSettingsActivity() {
         super(R.layout.activity_app_settings, R.menu.menu_settings, R.string.title_settings, true);
@@ -90,9 +90,9 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
         mDiskUtilization = (TextView) findViewById(R.id.disk_utilization);
         mDiskAllowance = (TextView) findViewById(R.id.disk_allowance);
         mAutoDownloadMimeTypes = (TextView) findViewById(R.id.auto_download_mime_types);
-        unreadMessageCountProgress = (ProgressBar) findViewById(R.id.unread_message_count_progress);
-        messageCountProgress = (ProgressBar) findViewById(R.id.message_count_progress);
-        conversationCountProgress = (ProgressBar) findViewById(R.id.conversation_count_progress);
+        mUnreadMessageCountProgress = (ProgressBar) findViewById(R.id.unread_message_count_progress);
+        mMessageCountProgress = (ProgressBar) findViewById(R.id.message_count_progress);
+        mConversationCountProgress = (ProgressBar) findViewById(R.id.conversation_count_progress);
 
         mAvatar.init(getPicasso());
 
@@ -270,19 +270,19 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
                 /* Statistics */
                 final List<Conversation> conversations = getLayerClient().getConversations();
                 for (Conversation conversation : conversations) {
-                    totalMessages += conversation.getTotalMessageCount();
-                    totalUnread += conversation.getTotalUnreadMessageCount();
+                    mTotalMessages += conversation.getTotalMessageCount();
+                    mTotalUnread += conversation.getTotalUnreadMessageCount();
                 }
 
                 mConversationCount.post(new Runnable() {
                     @Override
                     public void run() {
                         mConversationCount.setText(String.format("%d", conversations.size()));
-                        mMessageCount.setText(String.format("%d", totalMessages));
-                        mUnreadMessageCount.setText(String.format("%d", totalUnread));
-                        conversationCountProgress.setVisibility(View.INVISIBLE);
-                        messageCountProgress.setVisibility(View.INVISIBLE);
-                        unreadMessageCountProgress.setVisibility(View.INVISIBLE);
+                        mMessageCount.setText(String.format("%d", mTotalMessages));
+                        mUnreadMessageCount.setText(String.format("%d", mTotalUnread));
+                        mConversationCountProgress.setVisibility(View.INVISIBLE);
+                        mMessageCountProgress.setVisibility(View.INVISIBLE);
+                        mUnreadMessageCountProgress.setVisibility(View.INVISIBLE);
                     }
                 });
             }
