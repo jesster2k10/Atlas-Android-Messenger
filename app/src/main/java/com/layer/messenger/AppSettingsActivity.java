@@ -270,9 +270,9 @@ public class AppSettingsActivity extends BaseActivity implements LayerConnection
 
     private void setUpConversationCount(Results results) {
 
-        mConversationCount.setText(String.format("%d", results.getConversationSize()));
+        mConversationCount.setText(String.format("%d", results.getConversationCount()));
         mMessageCount.setText(String.format("%d", results.getTotalMessages()));
-        mUnreadMessageCount.setText(String.format("%d", results.getTotalUnread()));
+        mUnreadMessageCount.setText(String.format("%d", results.getTotalUnreadMessages()));
     }
 
     private String readableByteFormat(long bytes) {
