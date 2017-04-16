@@ -34,7 +34,7 @@ import java.util.Set;
  * This is only useful for enterprise customers with custom endpoints.  Contact support@layer.com
  * for information.
  *
- * @see com.layer.sdk.LayerClient.Options#customEndpoint(String, String, String, String)
+ * @see LayerClient.Options#customEndpoint(String, String, String, String)
  */
 public class CustomEndpoint {
     private static Endpoint sEndpoint;
