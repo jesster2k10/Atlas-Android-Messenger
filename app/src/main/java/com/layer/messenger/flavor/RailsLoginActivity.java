@@ -88,6 +88,7 @@ public class RailsLoginActivity extends AppCompatActivity {
                             Log.perf("LoginActivity received success callback for login attempt");
                         }
 
+                        provider.setCallback(null);
                         progressDialog.dismiss();
                         if (Log.isLoggable(Log.VERBOSE)) {
                             Log.v("Successfully authenticated as `" + email + "` with userId `" + userId + "`");
@@ -103,6 +104,8 @@ public class RailsLoginActivity extends AppCompatActivity {
                         if (Log.isLoggable(Log.ERROR)) {
                             Log.e("Failed to authenticate as `" + email + "`: " + error);
                         }
+
+                        provider.setCallback(null);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
