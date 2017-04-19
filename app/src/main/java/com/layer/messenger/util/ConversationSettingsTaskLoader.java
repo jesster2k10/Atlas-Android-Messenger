@@ -55,10 +55,10 @@ public class ConversationSettingsTaskLoader extends AsyncTaskLoader<Conversation
         private int mTotalUnreadMessages;
         private int mConversationCount;
 
-        public Results(int mTotalMessages, int mTotalUnreadMessages, int mConversationCount) {
-            this.mTotalMessages = mTotalMessages;
-            this.mTotalUnreadMessages = mTotalUnreadMessages;
-            this.mConversationCount = mConversationCount;
+        public Results(int totalMessages, int totalUnreadMessages, int conversationCount) {
+            this.mTotalMessages = totalMessages;
+            this.mTotalUnreadMessages = totalUnreadMessages;
+            this.mConversationCount = conversationCount;
         }
 
         public int getTotalMessages() {
