@@ -151,6 +151,7 @@ public class CustomEndpoint {
                 return sEndpoints;
             } catch (JSONException e) {
                 if (Log.isLoggable(Log.ERROR)) Log.e(e.getMessage(), e);
+                throw new IllegalStateException(e);
             }
 
         } catch (IOException e) {

@@ -54,7 +54,7 @@ public class RailsLoginActivity extends AppCompatActivity {
         });
 
         // Optionally add a CustomEndpoint Spinner (not typical)
-        if (Flavor.LAYER_APP_ID == null) {
+        if (App.LAYER_APP_ID == null) {
             Spinner customEndpoints = CustomEndpoint.createSpinner(this);
             if (customEndpoints != null) {
                 customEndpoints.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
