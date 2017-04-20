@@ -67,7 +67,7 @@
         </activity>
 
         <activity
-            android:name=".flavor.RailsLoginActivity"
+            android:name=".RailsLoginActivity"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize"/>
 
         <!-- Receiver: Our app notification handling -->

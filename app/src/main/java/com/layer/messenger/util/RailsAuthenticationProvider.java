@@ -1,4 +1,4 @@
-package com.layer.messenger.flavor;
+package com.layer.messenger.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,10 +7,8 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.layer.messenger.R;
+import com.layer.messenger.RailsLoginActivity;
 import com.layer.messenger.ResumeActivity;
-import com.layer.messenger.flavor.util.CustomEndpoint;
-import com.layer.messenger.util.AuthenticationProvider;
-import com.layer.messenger.util.Log;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.exceptions.LayerException;
 

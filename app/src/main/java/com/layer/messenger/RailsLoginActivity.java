@@ -1,4 +1,4 @@
-package com.layer.messenger.flavor;
+package com.layer.messenger;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,10 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.layer.messenger.App;
-import com.layer.messenger.ConversationsListActivity;
-import com.layer.messenger.R;
-import com.layer.messenger.flavor.util.CustomEndpoint;
+import com.layer.messenger.util.RailsAuthenticationProvider;
+import com.layer.messenger.util.CustomEndpoint;
 import com.layer.messenger.util.AuthenticationProvider;
 import com.layer.messenger.util.Log;
 

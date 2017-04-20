@@ -9,8 +9,8 @@ import com.layer.atlas.messagetypes.text.TextCellFactory;
 import com.layer.atlas.messagetypes.threepartimage.ThreePartImageUtils;
 import com.layer.atlas.util.Util;
 import com.layer.atlas.util.picasso.requesthandlers.MessagePartRequestHandler;
-import com.layer.messenger.flavor.RailsAuthenticationProvider;
-import com.layer.messenger.flavor.util.CustomEndpoint;
+import com.layer.messenger.util.RailsAuthenticationProvider;
+import com.layer.messenger.util.CustomEndpoint;
 import com.layer.messenger.util.AuthenticationProvider;
 import com.layer.messenger.util.Log;
 import com.layer.sdk.LayerClient;
@@ -137,8 +137,8 @@ public class App extends Application {
 
     /**
      * Gets or creates a LayerClient, using a default set of LayerClient.Options
-     * App ID and Options from the `generateLayerClient` method.  Returns `null` if the flavor was
-     * unable to create a LayerClient (due to no App ID, etc.). Set App Id {@link App.LAYER_APP_ID}
+     * App ID and Options from the `generateLayerClient` method.  Returns `null` if the App was
+     * Unable to create a LayerClient (due to no App ID, etc.). Set App Id {@link App.LAYER_APP_ID}
      * @return New or existing LayerClient, or `null` if a LayerClient could not be constructed.
      */
     public static LayerClient getLayerClient() {
@@ -155,7 +155,6 @@ public class App extends Application {
                             ThreePartImageUtils.MIME_TYPE_INFO,
                             ThreePartImageUtils.MIME_TYPE_PREVIEW));
 
-            // Allow flavor to specify Layer App ID and customize Options.
             sLayerClient = generateLayerClient(sInstance, options);
 
             // unable to generate Layer Client (no App ID, etc.)

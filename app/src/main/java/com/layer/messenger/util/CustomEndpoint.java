@@ -1,4 +1,4 @@
-package com.layer.messenger.flavor.util;
+package com.layer.messenger.util;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -150,8 +150,9 @@ public class CustomEndpoint {
                 }
                 return sEndpoints;
             } catch (JSONException e) {
-                if (Log.isLoggable(Log.ERROR)) Log.e(e.getMessage(), e);
-                throw new IllegalStateException(e);
+                String errorMessage = "Unable to parse the LayerConfiguration.json file. Please ensure the formatting is correct.";
+                if (Log.isLoggable(Log.ERROR)) Log.e(errorMessage, e);
+                throw new IllegalStateException(errorMessage, e);
             }
 
         } catch (IOException e) {
