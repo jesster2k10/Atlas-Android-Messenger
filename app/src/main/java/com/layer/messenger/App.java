@@ -138,7 +138,7 @@ public class App extends Application {
     /**
      * Gets or creates a LayerClient, using a default set of LayerClient.Options
      * App ID and Options from the `generateLayerClient` method.  Returns `null` if the App was
-     * Unable to create a LayerClient (due to no App ID, etc.). Set App Id {@link App.LAYER_APP_ID}
+     * unable to create a LayerClient (due to no App ID, etc.). Set App Id {@link App.LAYER_APP_ID}
      * @return New or existing LayerClient, or `null` if a LayerClient could not be constructed.
      */
     public static LayerClient getLayerClient() {
@@ -157,7 +157,7 @@ public class App extends Application {
 
             sLayerClient = generateLayerClient(sInstance, options);
 
-            // unable to generate Layer Client (no App ID, etc.)
+            // Unable to generate Layer Client (no App ID, etc.)
             if (sLayerClient == null) return null;
 
             /* Register AuthenticationProvider for handling authentication challenges */

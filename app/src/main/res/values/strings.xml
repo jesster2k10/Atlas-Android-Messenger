@@ -80,7 +80,7 @@
     <string name="push_notification_no_content_title">New message (tap to sync)</string>
 
     <string name="app_name">Atlas Messenger</string>
-    <string name="app_id_required">Please set your Layer App ID in `Flavor.java` when using the Rails Identity Provider.  You can get your Layer App ID from the developer dashboard.</string>
+    <string name="app_id_required">Please set your Layer App ID in App.java.  You can get your Layer App ID from the developer dashboard.</string>
 
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
