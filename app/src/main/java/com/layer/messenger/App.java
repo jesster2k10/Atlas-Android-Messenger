@@ -9,7 +9,7 @@ import com.layer.atlas.messagetypes.text.TextCellFactory;
 import com.layer.atlas.messagetypes.threepartimage.ThreePartImageUtils;
 import com.layer.atlas.util.Util;
 import com.layer.atlas.util.picasso.requesthandlers.MessagePartRequestHandler;
-import com.layer.messenger.util.RailsAuthenticationProvider;
+import com.layer.messenger.util.LayerAuthenticationProvider;
 import com.layer.messenger.util.CustomEndpoint;
 import com.layer.messenger.util.AuthenticationProvider;
 import com.layer.messenger.util.Log;
@@ -203,7 +203,7 @@ public class App extends Application {
     }
 
     private static AuthenticationProvider generateAuthenticationProvider(Context context) {
-        return new RailsAuthenticationProvider(context);
+        return new LayerAuthenticationProvider(context);
     }
 
 }
